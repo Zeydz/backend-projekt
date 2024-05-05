@@ -4,13 +4,15 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    background-color: variables.$body-color;
+    text-decoration: none;
 }
 
 body {
   overflow-x: hidden;
 }
 
-// !Kontrollera att scrollbar färg funkar
+// !Kontrollera att scrollbar färg 
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background-color: transparent; }
 ::-webkit-scrollbar-thumb { background-color: variables.$accent-color;}
