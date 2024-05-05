@@ -16,17 +16,21 @@
     text-align: center;
     background: transparent;
     z-index: 2;
-
+    /* Utforska meny knapp */
     #explore-menu {
         display: inline-block;
         background-color: variables.$accent-color;
         padding: 15px 35px;
         color: black;
-        font-weight: 500;
+        font-weight: 600;
         letter-spacing: 1px;
         border-radius: 30px;
         font-size: 18px;
         transition: all .50s ease;
+        &:hover {
+            box-shadow: #ff9f0d 0px 1px 10px;
+            transition: all .40s ease;
+        }
         i {
             vertical-align: middle;
             margin-top: 1px;
@@ -34,7 +38,7 @@
             font-size: 18px;
         }
     }
-
+    /* h1, huvudtext */
     h1 {
         background: transparent;
         font-size: 3em;

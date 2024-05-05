@@ -3,8 +3,31 @@
 
 .menu {
     height: 100%;
-    h1 {
-        height: 100%;
+    background-color: #211F23;
+    h2 {
+        margin: 0;
+        padding: 100px;
         text-align: center;
+        color: white;
+    }
+    .menu-container {
+        padding: 30px 8% 70px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        h3 {
+            color: variables.$accent-color;
+            width: 100%;
+        }
+        p {
+            color: white;
+        }
+    }
+    .menu-box {
+       
+        align-self: center;
+        justify-self: center;
+        
+
     }
 }

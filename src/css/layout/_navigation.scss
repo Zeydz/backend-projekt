@@ -4,14 +4,13 @@
 header {
     position: fixed;
     width: 100%;
-    height: 120px;
+    
     top: 0;
     right: 0;
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
     padding: 30px 14%;
     transition: all .50s ease;
 
@@ -72,11 +71,17 @@ header {
     }
 }
  
+header.sticky {
+    padding: 12px 14%;
+    background-color: #2B2B2B;
+}
+
+
 /* Responsivitet */
-@media (max-width: 1545px) {
+/* @media (max-width: 1545px) {
     header {
         padding: 22px 4%;
         transition: .2s ;
     }
 }
-  
+   */
