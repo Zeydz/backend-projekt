@@ -1,4 +1,4 @@
-/* Navigationsmeny */
+/* Navigation */
 @use "../abstracts/variables";
 
 header {
@@ -11,18 +11,14 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: transparent;
-    padding: 30px 7%;
+    
+    padding: 30px 14%;
     transition: all .50s ease;
 
     #logo {
         font-size: 1.5em;
         width: 216px;
         text-align: center;
-    }
-
-    ul {
-        list-style: none;
     }
 
     /* Mitten menyn */
@@ -34,7 +30,7 @@ header {
             margin: 0 30px;
             transition: all .50s ease;
             &:hover {
-                color: gray;
+                color: rgb(206, 206, 206);
             }
         }
     }
@@ -76,5 +72,11 @@ header {
     }
 }
  
-
+/* Responsivitet */
+@media (max-width: 1545px) {
+    header {
+        padding: 22px 4%;
+        transition: .2s ;
+    }
+}
   
