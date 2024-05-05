@@ -25,9 +25,14 @@
         font-weight: 500;
         letter-spacing: 1px;
         border-radius: 30px;
-        font-size: 1em;
+        font-size: 18px;
         transition: all .50s ease;
-
+        i {
+            vertical-align: middle;
+            margin-top: 1px;
+            margin-left: 9px;
+            font-size: 18px;
+        }
     }
 
     h1 {
