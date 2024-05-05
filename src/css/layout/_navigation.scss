@@ -12,17 +12,20 @@ header {
     align-items: center;
     justify-content: space-between;
     background: transparent;
-    padding: 30px 14%;
+    padding: 30px 7%;
     transition: all .50s ease;
 
     #logo {
         font-size: 1.5em;
+        width: 216px;
+        text-align: center;
     }
 
     ul {
         list-style: none;
     }
 
+    /* Mitten menyn */
     .navlist {
         display: flex;
         a {
@@ -36,22 +39,40 @@ header {
         }
     }
 
+    /* Gul knapp + ikoner */
     .nav-icons {
         display: flex;
         align-items: center;
+        i {
+            font-size: 1.3em;
+            margin-left: 30px;
+            color: white;
+            &:hover {
+                transform: scale(1.1);
+                transition: all .50s ease;
+                color: rgb(228, 228, 228);
+            }
+        }
+        #menu-icon {
+            z-index: 10001;
+            cursor: pointer;
+            display: none;
+        }
     }
 
+    /* Gula knappen */
     .right-button {
         display: inline-block;       
-        margin: 0 30px;
         background-color: variables.$accent-color;
-        width: 110px;
+        width: 120px;
         text-align: center;
         padding: 10px;
         color: black;
         font-weight: 600;
-        box-shadow: #ff9f0d 0px 1px 10px;
-        
+        &:hover {
+            box-shadow: #ff9f0d 0px 1px 10px;
+            transition: all .40s ease;
+        }
     }
 }
  
