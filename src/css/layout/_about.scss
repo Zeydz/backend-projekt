@@ -1,0 +1,6 @@
+/* Om */
+@use "../abstracts/variables";
+
+.about {
+    background-color: variables.$about-color;
+}
