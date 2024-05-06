@@ -2,5 +2,103 @@
 @use "../abstracts/variables";
 
 .about {
+    
     background-color: variables.$about-color;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 4rem;
+
+    .about-img img {
+        height: auto;
+        margin-top: 100px;
+        animation: bounce 3s infinite alternate;
+    }
+
+    .about-text {
+        display: flex;
+        flex-direction: row;
+        margin-top: 8rem;
+        h2 {
+            font-size: 2.1em;
+            line-height: 1.3;
+            margin-bottom: 3rem;
+            color: variables.$accent-color;
+        }
+        p {
+            color: white;
+            font-size: 1.1em;
+            line-height: 30px;
+            width: 80%;
+        }
+        .chef-pic img {            
+
+            height: auto;
+        }
+        .text-column {
+            margin-left: 60px;
+        }
+    }
+}
+/* Animation för bakgrundsdetalj */
+@keyframes bounce {
+    0% {
+        transform: translateY(0); /* Startposition för rörelsen (inget vertikalt förskjutning) */
+    }
+    100% {
+        transform: translateY(-20px); /* Slutposition för rörelsen (flytta uppåt med 20px) */
+    }
+}
+
+/* Responsivitet */
+@media (max-width:1400px) {
+    .about {
+        background-color: variables.$about-color;
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        gap: 6rem;
+    
+        .about-img img {
+            height: auto;
+            margin-top: 100px;
+            animation: bounce 3s infinite alternate;
+        }
+        .chef-pic img {
+            width: 400px;
+        }
+    }
+}
+@media (max-width:1260px) {
+    .chef-pic img {
+        display: none;
+    }
+    .about .about-text p {
+        width: 100%;
+        padding-right: 20px;
+    }
+}
+
+@media (max-width:840px) {
+    .about {
+        gap: 0;
+        h2 {
+            text-align: center;
+        }
+
+    }
+
+    .about .about-text .text-column {
+        margin-left: 0;
+        padding: 50px;
+    }
+
+    .about .about-img img {
+        display: none;
+        height: auto;
+        margin-top: 100px;
+        animation: bounce 3s infinite alternate;
+    }
+    .about .about-text p {
+        width: 100%;
+        padding-right: 0;
+    }
 }
