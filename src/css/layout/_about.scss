@@ -2,7 +2,6 @@
 @use "../abstracts/variables";
 
 .about {
-    
     background-color: variables.$about-color;
     display: grid;
     grid-template-columns: repeat(3, auto);
