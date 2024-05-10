@@ -4,8 +4,8 @@
   "description": "",
   "source": "index.html",
   "scripts": {
-    "start": "parcel",
-    "build": "parcel build"
+    "start": "parcel index.html login.html admin.html",
+    "build": "parcel build index.html login.html admin.html"
   },
   "keywords": [],
   "author": "",

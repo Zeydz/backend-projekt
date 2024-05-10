@@ -1,0 +1,48 @@
+/* Basstil för adminpanelen */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+#menu-items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menu-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+}
+
+#bookings-list {
+    list-style: none;
+    padding: 0;
+}
+
+.booking-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
