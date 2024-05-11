@@ -1,48 +1,61 @@
-/* Basstil för adminpanelen */
+/* Färger */
+@use "../abstracts/variables";
+/* Variabler */
+$accent-color: #FFC977;
+$body-color: #292929;
+$menu-color: #211F23;
+$about-color: #141414;
+
+/* Allmän styling */
 body {
     font-family: Arial, sans-serif;
+    background-color: $body-color;
+    color: white;
     margin: 0;
     padding: 0;
 }
 
-header#admin-header {
-    background-color: #333;
-    color: #fff;
+header {
+    background-color: $menu-color;
+    color: white;
     padding: 20px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 main {
     padding: 20px;
 }
 
-h2 {
-    margin-top: 0;
+section {
+    margin-bottom: 30px;
 }
 
-#menu-items {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.menu-item {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    width: 200px;
-}
-
-#bookings-list {
-    list-style: none;
-    padding: 0;
-}
-
-.booking-item {
+h1, h2 {
     margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
+button {
+    background-color: $accent-color;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: darken($accent-color, 10%);
+}
+
+/* Styling för menysektionen */
+.menu-section {
+    background-color: $menu-color;
+    padding: 20px;
+}
+
+/* Styling för bokningssektionen */
+.booking-section {
+    background-color: $about-color;
+    padding: 20px;
+}

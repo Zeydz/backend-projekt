@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +7,18 @@
     <link rel="stylesheet" href="src/css/pages/_admin.scss">
 </head>
 <body>
-    <header id="admin-header">
+    <header>
         <h1>Admin Panel</h1>
         <button id="logout-btn">Logga ut</button>
     </header>
     <main>
-        <section id="menu-section">
-            <h2>Redigera Meny</h2>
-            <div id="menu-items">
-                <!-- Här visas menyn dynamiskt från databasen -->
-            </div>
-            <button id="add-item-btn">Lägg till nytt menyobjekt</button>
+        <section class="menu-section">
+            <h2>Nuvarande meny</h2>
+            <!-- Formulär för att redigera meny -->
         </section>
-        <section id="bookings-section">
+        <section class="booking-section">
             <h2>Bokade Bord</h2>
-            <ul id="bookings-list">
-                <!-- Här visas bokade bord dynamiskt från databasen -->
-            </ul>
+            <!-- Lista med bokade bord -->
         </section>
     </main>
     <script src="src/js/checktoken.js" type="module"></script>
