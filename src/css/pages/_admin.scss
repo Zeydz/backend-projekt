@@ -51,13 +51,30 @@ button {
     cursor: pointer;
 }
 
+#add-btn {
+    background-color: rgb(2, 105, 2);
+    color: white;
+}
+
 .delete-button {
     color: white;
     background-color: rgb(116, 2, 2);
 }
 
+.edit-button {
+    background-color: rgb(0, 153, 255);
+    color: black;
+    margin-left: 20px;
+}
+
 button:hover {
     background-color: darken(variables.$accent-color, 10%);
+}
+
+.flex-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Styling för menysektionen */

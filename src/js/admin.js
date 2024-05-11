@@ -31,14 +31,20 @@ document.addEventListener("DOMContentLoaded", () => {
       menuItemPrice.textContent = `${item.price} kr`;
       const menuItemDescription = document.createElement("p");
       menuItemDescription.textContent = item.description;
+      /* Ta bort knapp */
       const deleteBtn = document.createElement("button");
       deleteBtn.textContent = "Ta bort";
       deleteBtn.classList.add("delete-button");
       deleteBtn.setAttribute("data-post-id", item._id);
+      /* Ändra knapp */
+      const editBtn = document.createElement("button");
+      editBtn.textContent = "Ändra";
+      editBtn.classList.add("edit-button");
       menuBox.appendChild(menuItemHeader);
       menuBox.appendChild(menuItemDescription);
       menuBox.appendChild(menuItemPrice);
       menuBox.appendChild(deleteBtn);
+      menuBox.appendChild(editBtn);
       menuContainer.appendChild(menuBox);
     });
     attachDeleteEventListeners();
