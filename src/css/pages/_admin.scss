@@ -1,27 +1,33 @@
 /* Färger */
 @use "../abstracts/variables";
-/* Variabler */
-$accent-color: #FFC977;
-$body-color: #292929;
-$menu-color: #211F23;
-$about-color: #141414;
+/* Textcss */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
 
 /* Allmän styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: $body-color;
+    background-color: variables.$body-color;
     color: white;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: $menu-color;
+    background-color: variables.$menu-color;
     color: white;
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.menu-box {
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: #141414 ;
 }
 
 main {
@@ -37,25 +43,31 @@ h1, h2 {
 }
 
 button {
-    background-color: $accent-color;
-    color: white;
+    background-color: variables.$accent-color;
+    color: black;
+    font-weight: 600;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
 }
 
+.delete-button {
+    color: white;
+    background-color: rgb(116, 2, 2);
+}
+
 button:hover {
-    background-color: darken($accent-color, 10%);
+    background-color: darken(variables.$accent-color, 10%);
 }
 
 /* Styling för menysektionen */
 .menu-section {
-    background-color: $menu-color;
+    background-color: variables.$menu-color;
     padding: 20px;
 }
 
 /* Styling för bokningssektionen */
 .booking-section {
-    background-color: $about-color;
+    background-color: variables.$about-color;
     padding: 20px;
 }

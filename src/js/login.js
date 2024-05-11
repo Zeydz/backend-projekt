@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         showLoadingSpinner();
-
+        /* Fetch för logga in */
         fetch('http://localhost:3000/api/login', {
             method: 'POST',
             headers: {
@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             body: JSON.stringify({ username: username, password: password})
         }) 
+        /* Hantering av olika felkoder */
         .then(response => {
             if (!response.ok) {
                 if (response.status === 404) {
@@ -32,10 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return response.json();
         })
+        /* Spara token i localStorage och skicka vidare besökare till admin */
         .then(data => {
             localStorage.setItem('token', data.response.token);
             window.location.href = '/admin.html'
         })
+        /* Hantera fel */
         .catch (error => {
             hideLoadingSpinner()
             errormessageEl.textContent = 'Fel användarnamn / lösenord'
