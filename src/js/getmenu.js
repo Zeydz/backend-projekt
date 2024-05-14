@@ -1,15 +1,21 @@
 /* Hämta meny på startsida */
 document.addEventListener("DOMContentLoaded", () => {
   /* Hämta menyn när sidan laddas */
+  showLoadingSpinner();
   fetch("http://localhost:3000/api/menu")
     .then((response) => {
       if (!response.ok) {
+        const errorMenu = document.getElementById("error-menu");
+        errorMenu.innerHTML =
+          "<p>Kunde inte hämta menyn, försök igen senare.</p>";
+          hideLoadingSpinner()
         throw new Error("Kunde inte hämta menyn.");
       }
       return response.json();
     })
     .then((menuItems) => {
       /* Rendera meny på webbplats */
+      hideLoadingSpinner()
       renderMenu(menuItems);
     })
     .catch((error) => {
@@ -31,5 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
       menuBox.appendChild(menuItemDescription);
       menuContainer.appendChild(menuBox);
     });
+  }
+  /* Laddningsanimation som visar spinnern */
+  function showLoadingSpinner() {
+    document.getElementById("loadingSpinner").style.display = "block";
+  }
+  /* Laddningsanimation som gömmer spinnern */
+  function hideLoadingSpinner() {
+    document.getElementById("loadingSpinner").style.display = "none";
   }
 });
