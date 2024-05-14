@@ -107,11 +107,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const editForm = document.createElement("form");
         editForm.classList.add("edit-form");
         editForm.innerHTML = `
-        <label for="editName">Namn:</label><br>
-        <input type="text" id="editName" value="${menuData.itemName}" required><br>
-        <label for="editDesc">Beskrivning:</label><br>
-        <input type="text" id="editDesc" value="${menuData.description}" required><br>
-        <label for="editPrice">Pris:</label><br>
+        <h2>Redigera meny</h2>
+        <label for="editName">Namn:</label>
+        <input type="text" id="editName" value="${menuData.itemName}" required>
+        <label for="editDesc">Beskrivning:</label>
+        <input type="text" id="editDesc" value="${menuData.description}" required>
+        <label for="editPrice">Pris:</label>
         <input type="text" id="editPrice" value="${menuData.price}" required><br>
         <button type="submit">Spara</button>
         <button type="button" class="cancel-btn">Avbryt</button>`;

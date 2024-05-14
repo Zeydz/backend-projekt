@@ -18,7 +18,7 @@ body {
 header {
   background-color: variables.$menu-color;
   color: white;
-  padding: 20px;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -99,6 +99,7 @@ button.delete-button:hover {
 
 /* Design på ändra formuläret */
 .edit-form {
+  margin-top: 20px;
   label {
     display: block;
     margin-bottom: 5px;
@@ -106,8 +107,8 @@ button.delete-button:hover {
   }
 
   input[type="text"] {
-    width: 100%;
-    padding: 8px;
+    width: 250px;
+    padding: 1px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
