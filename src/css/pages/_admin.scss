@@ -1,184 +1,196 @@
 /* Färger */
 @use "../abstracts/variables";
 /* Textcss */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Allmän styling */
 body {
-    background-color: variables.$body-color;
-    color: white;
-    margin: 0;
-    padding: 0;
+  background-color: variables.$body-color;
+  color: white;
+  margin: 0;
+  padding: 0;
 }
 
 header {
-    background-color: variables.$menu-color;
-    color: white;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: variables.$menu-color;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .menu-box {
-    margin-bottom: 5px;
-    padding: 10px;
-    background-color: #141414 ;
+  margin-bottom: 5px;
+  padding: 10px;
+  background-color: #141414;
 }
 
 main {
-    padding: 20px;
+  padding: 20px;
 }
 
 section {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
-h1, h2 {
-    margin-bottom: 10px;
+h1,
+h2 {
+  margin-bottom: 10px;
 }
 
 button {
-    background-color: variables.$accent-color;
-    color: black;
-    font-weight: 600;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
+  background-color: variables.$accent-color;
+  color: black;
+  font-weight: 600;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 #add-btn {
-    background-color: rgb(2, 105, 2);
-    color: white;
+  background-color: rgb(2, 105, 2);
+  color: white;
 }
 
 .delete-button {
-    color: white;
-    background-color: #f44336;
+  color: white;
+  background-color: #f44336;
+  transition: background-color 0.3s ease;
 }
 
 .edit-button {
-    background-color: rgb(0, 153, 255);
-    color: white;
-    margin-left: 20px;
+  background-color: rgb(2, 101, 167);
+  color: white;
+  margin-left: 20px;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: darken(variables.$accent-color, 10%);
+button.edit-button:hover {
+  background-color: rgb(1, 80, 133);
+}
+
+button.delete-button:hover {
+  background-color: #85221b;
 }
 
 .flex-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Styling för menysektionen */
 .menu-section {
-    background-color: variables.$menu-color;
-    padding: 20px;
+  background-color: variables.$menu-color;
+  padding: 20px;
 }
 
 /* Styling för bokningssektionen */
 .booking-section {
-    background-color: variables.$about-color;
-    padding: 20px;
+  background-color: variables.$about-color;
+  padding: 20px;
 }
-/* Design på ändra formuläret */
 
+/* Design på ändra formuläret */
 .edit-form {
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-  
-    input[type="text"] {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-      font-size: 16px;
-    }
-  
-    button {
-      padding: 10px 20px;
-      margin-right: 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-size: 16px;
-    }
-  
-    button[type="submit"] {
-      background-color: variables.$green-button;
-      color: white;
-    }
-  
-    button.cancel-btn {
-      background-color: variables.$red-button;
-      color: white;
-    }
-  
-    button[type="submit"]:hover {
-      background-color: darken(#4caf50, 10%);
-    }
-    button.cancel-btn:hover {
-        background-color: #85221b;
-    } 
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
   }
-  
-  
+
+  input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+  }
+
+  button[type="submit"] {
+    background-color: variables.$green-button;
+    color: white;
+  }
+
+  button.cancel-btn {
+    background-color: variables.$red-button;
+    color: white;
+  }
+
+  button[type="submit"]:hover {
+    background-color: darken(#4caf50, 10%);
+  }
+  button.cancel-btn:hover {
+    background-color: #85221b;
+  }
+}
+
+/* Formulär för att lägga till meny */
 .add-form {
-    label {
-      display: inline;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-  
-    input[type="text"], input[type="number"] {
-      width: 150px;
-      padding: 1px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-      font-size: 16px;
-    }
-  
-    button {
-      padding: 5px 10px;
-      margin-right: 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-size: 16px;
-    }
-  
-    button[type="submit"] {
-      background-color: variables.$green-button;
-      color: white;
-    }
-  
-    button.cancel-btn {
-      background-color: variables.$red-button;
-      color: white;
-    }
-  
-    button[type="submit"]:hover {
-      background-color: darken(#4caf50, 10%);
-    }
-    button.cancel-btn:hover {
-        background-color: #85221b;
-    } 
+  label {
+    display: inline;
+    margin-bottom: 5px;
+    font-weight: bold;
   }
-  
-  
+
+  input[type="text"],
+  input[type="number"] {
+    width: 250px;
+    padding: 1px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  button {
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+  }
+
+  button[type="submit"] {
+    background-color: variables.$green-button;
+    color: white;
+  }
+
+  button.cancel-btn {
+    background-color: variables.$red-button;
+    color: white;
+  }
+
+  button[type="submit"]:hover {
+    background-color: darken(#4caf50, 10%);
+  }
+  button.cancel-btn:hover {
+    background-color: #85221b;
+  }
+}
+
+/* Lägg till meny ruta */
+#addform {
+  display: none;
+}

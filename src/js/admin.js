@@ -165,19 +165,22 @@ document.addEventListener("DOMContentLoaded", () => {
   /* Lägga till meny */
   const menuContEl = document.querySelector(".flex-menu");
   const addMenuBtn = document.getElementById("add-btn");
+  const addFormEl = document.getElementById("addform");
   addMenuBtn.addEventListener("click", () => {
     const addMenuForm = document.createElement("form");
     addMenuForm.classList.add("add-form");
     addMenuForm.innerHTML = `
-    <label for="itemName">Namn:</label>
-    <input type="text" id="itemName" required>
-    <label for="description">Beskrivning:</label>
-    <input type="text" id="description" required>
-    <label for="price">Pris:</label>
-    <input type="number" id="price" required>
+    <h2>Lägg till meny </h2>
+    <label for="itemName">Namn:</label><br>
+    <input type="text" id="itemName" required><br>
+    <label for="description">Beskrivning:</label><br>
+    <input type="text" id="description" required><br>
+    <label for="price">Pris:</label><br>
+    <input type="number" id="price" required><br>
     <button type="submit">Spara</button>
     <button type="button" class="cancel-btn">Avbryt</button>
     `;
+    addFormEl.style.display = "block";
 
     /* Eventlistener för att spara en ny meny */
     addMenuForm.addEventListener("submit", (e) => {
@@ -207,6 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then((newMenu) => {
           addMenuForm.remove();
+          addFormEl.style.display = "none";
           addMenuBtn.style.display = "block";
           fetchMenuAndRender();
         })
@@ -218,9 +222,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const cancelButton = addMenuForm.querySelector(".cancel-btn");
     cancelButton.addEventListener("click", () => {
       addMenuForm.remove();
+      addFormEl.style.display = "none";
       addMenuBtn.style.display = "block";
     });
     addMenuBtn.style.display = "none";
-    menuContEl.appendChild(addMenuForm);
+    addFormEl.appendChild(addMenuForm);
   });
 });
