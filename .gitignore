@@ -3,3 +3,4 @@ dist/
 .parcel-cache/
 src/.DS_Store
 .DS_Store
+package-lock.json
