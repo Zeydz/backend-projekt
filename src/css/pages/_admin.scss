@@ -118,12 +118,12 @@ button:hover {
     }
   
     button[type="submit"] {
-      background-color: #4caf50;
+      background-color: variables.$green-button;
       color: white;
     }
   
     button.cancel-btn {
-      background-color: #f44336;
+      background-color: variables.$red-button;
       color: white;
     }
   
@@ -131,7 +131,7 @@ button:hover {
       background-color: darken(#4caf50, 10%);
     }
     button.cancel-btn:hover {
-        background-color: #ce372c;
+        background-color: #85221b;
     } 
   }
   
@@ -164,12 +164,12 @@ button:hover {
     }
   
     button[type="submit"] {
-      background-color: #4caf50;
+      background-color: variables.$green-button;
       color: white;
     }
   
     button.cancel-btn {
-      background-color: #f44336;
+      background-color: variables.$red-button;
       color: white;
     }
   
@@ -177,7 +177,7 @@ button:hover {
       background-color: darken(#4caf50, 10%);
     }
     button.cancel-btn:hover {
-        background-color: #ce372c;
+        background-color: #85221b;
     } 
   }
   

@@ -16,3 +16,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 });
+
+/* Hamburgaremeny */
+const menu = document.getElementById('togglemenuicon');
+const navlist = document.querySelector('.navlist');
+const header = document.querySelector('header');
+
+menu.addEventListener('click', () => {
+    
+    menu.classList.toggle('fa-xmark');
+    navlist.classList.toggle('open');
+    header.classList.toggle('sticky');
+});
+
+navlist.addEventListener('click', () => {
+    navlist.classList.toggle('open');
+})
