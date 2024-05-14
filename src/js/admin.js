@@ -89,12 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
   /*  Funktion för att ändra en befintlig kurs. Skickar med menyid i fetch. */
   function editMenu(menuId, menuBox) {
     /* Kontrollera ifall editForm redan finns. */
-    const existingEditForm = menuBox.querySelector('.edit-form');
+    const existingEditForm = menuBox.querySelector(".edit-form");
     if (existingEditForm) {
       existingEditForm.remove();
     }
-
-
 
     /* Fetchar vald menyid */
     fetch(`http://localhost:3000/api/menu/${menuId}`)
@@ -165,11 +163,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* Lägga till meny */
-  const menuContEl = document.querySelector('.flex-menu');
-  const addMenuBtn = document.getElementById('add-btn');
-  addMenuBtn.addEventListener('click', () => {
-    const addMenuForm = document.createElement('form');
-    addMenuForm.classList.add('add-form')
+  const menuContEl = document.querySelector(".flex-menu");
+  const addMenuBtn = document.getElementById("add-btn");
+  addMenuBtn.addEventListener("click", () => {
+    const addMenuForm = document.createElement("form");
+    addMenuForm.classList.add("add-form");
     addMenuForm.innerHTML = `
     <label for="itemName">Namn:</label>
     <input type="text" id="itemName" required>
@@ -182,47 +180,47 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
     /* Eventlistener för att spara en ny meny */
-    addMenuForm.addEventListener('submit', (e) => {
+    addMenuForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      
-      /* Värden från formuläret */
-      const itemName = document.getElementById('itemName').value;
-      const description = document.getElementById('description').value;
-      const price = document.getElementById('price').value;
 
-      fetch('http://localhost:3000/api/menu', {
-        method: 'POST', 
+      /* Värden från formuläret */
+      const itemName = document.getElementById("itemName").value;
+      const description = document.getElementById("description").value;
+      const price = document.getElementById("price").value;
+
+      fetch("http://localhost:3000/api/menu", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
-        }, 
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           itemName,
           description,
-          price
-        }) 
+          price,
+        }),
       })
-      .then((response) => {
-        if(!response.ok) {
-          throw new Error('Kunde inte lägga till meny');
-        }
-        return response.json();
-      })
-      .then((newMenu) => {
-        addMenuForm.remove();
-        addMenuBtn.style.display = 'block';
-        fetchMenuAndRender();
-      })
-      .catch ((error) => {
-        console.error('Något gick fel', error);
-      }) 
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Kunde inte lägga till meny");
+          }
+          return response.json();
+        })
+        .then((newMenu) => {
+          addMenuForm.remove();
+          addMenuBtn.style.display = "block";
+          fetchMenuAndRender();
+        })
+        .catch((error) => {
+          console.error("Något gick fel", error);
+        });
     });
     /* Avbryt knapp */
-    const cancelButton = addMenuForm.querySelector('.cancel-btn');
-    cancelButton.addEventListener('click', () => {
+    const cancelButton = addMenuForm.querySelector(".cancel-btn");
+    cancelButton.addEventListener("click", () => {
       addMenuForm.remove();
-      addMenuBtn.style.display = 'block';
+      addMenuBtn.style.display = "block";
     });
-    addMenuBtn.style.display = 'none';
+    addMenuBtn.style.display = "none";
     menuContEl.appendChild(addMenuForm);
-  })
+  });
 });
