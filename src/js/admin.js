@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* Hämta menyn när sidan laddas */
   fetchMenuAndRender();
+  fetchReservationAndRender();
   /* Funktion för att hämta meny */
   async function fetchMenuAndRender() {
     try {
@@ -68,6 +69,15 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteMenu(postID);
       });
     });
+
+    /* Eventlistener för bokningsknapparna (ta bort) */
+    const deleteButtons2 = document.querySelectorAll('.delete-button2')
+    deleteButtons2.forEach((button) => {
+      button.addEventListener("click", () => {
+        const postID = button.getAttribute("data-post-id");
+        deleteRes(postID);
+      });
+    });
   }
 
   /* Ta bort meny */
@@ -79,14 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
           "Content-Type": "application/json",
         },
       });
-      const data = await response.json();
       fetchMenuAndRender();
     } catch (error) {
       console.error("Något gick fel:", error);
     }
   }
 
-  /*  Funktion för att ändra en befintlig kurs. Skickar med menyid i fetch. */
+  /*  Funktion för att ändra en befintlig meny. Skickar med menyid i fetch. */
   function editMenu(menuId, menuBox) {
     /* Kontrollera ifall editForm redan finns. */
     const existingEditForm = menuBox.querySelector(".edit-form");
@@ -229,4 +238,79 @@ document.addEventListener("DOMContentLoaded", () => {
     addMenuBtn.style.display = "none";
     addFormEl.appendChild(addMenuForm);
   });
+
+  /* -------------------- Här börjar bokning ----------------------- */
+  async function fetchReservationAndRender() {
+    try {
+      const response = await fetch("http://localhost:3000/api/bookings");
+      if (!response.ok) {
+        throw new Error("Kunde inte hämta reservationer");
+      }
+      const resItems = await response.json();
+      renderRes(resItems);
+    } catch (error) {
+      console.error("Fel vid hämtning av meny:", error);
+    }
+  }
+
+  /* Funktion för att skriva ut de olika bokningarna till DOM */
+  function renderRes(resItems) {
+    const resContainer = document.querySelector(".res-container");
+    /* Rensa innehåll sedan tidigare */
+    resContainer.innerHTML = "";
+    /* Loopa igenom och skriv ut, lägger till ID från MongoDB till knapp */
+    resItems.forEach((item) => {
+      const resBox = document.createElement("div");
+      resBox.classList.add("res-box");
+      const resItemHeader = document.createElement("p");
+      resItemHeader.textContent = `Namn: ${item.name}`;
+
+      const resItemGuests = document.createElement("p");
+      resItemGuests.textContent = `Antal gäster: ${item.numberOfGuests}`;
+
+      const resItemDate = document.createElement("p");
+      const date = new Date(item.date);
+      const formattedDate = date.toISOString().split('T')[0];
+      resItemDate.textContent = `Datum: ${formattedDate}`;
+
+      const resItemTime = document.createElement("p");
+      resItemTime.textContent = `Datum: ${item.time}`;
+
+      const resItemPhone = document.createElement("p");
+      resItemPhone.textContent = `Tel: ${item.phone}`;
+
+      const resItemMessage = document.createElement("p");
+      resItemMessage.textContent = item.message;
+
+      /* Ta bort knapp */
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Ta bort";
+      deleteBtn.classList.add("delete-button2");
+      deleteBtn.setAttribute("data-post-id", item._id);
+      resBox.appendChild(resItemHeader);
+      resBox.appendChild(resItemPhone);
+      resBox.appendChild(resItemGuests);
+      resBox.appendChild(resItemDate);
+      resBox.appendChild(resItemTime);
+      resBox.appendChild(resItemMessage);
+      resBox.appendChild(deleteBtn);
+
+      resContainer.appendChild(resBox);
+    });
+  }
+
+    /* Ta bort bokning*/
+    async function deleteRes(id) {
+      try {
+        const response = await fetch(`http://localhost:3000/api/bookings/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        fetchReservationAndRender();
+      } catch (error) {
+        console.error("Något gick fel:", error);
+      }
+    }
 });

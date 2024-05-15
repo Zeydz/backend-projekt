@@ -26,10 +26,11 @@
     <!-- Startsida -->
     <section class="home" id="home">
         <div class="home-text">
-            <h1>Matlagning med <span style="color: #FFC977;">passion</span> <br> och <span style="color: #FFC977;">kärlek</span>.</h1>
+            <h1>Matlagning med <span style="color: #FFC977;">passion</span> <br> och <span
+                    style="color: #FFC977;">kärlek</span>.</h1>
             <a href="#menu" id="explore-menu">Utforska meny<i class="fa-solid fa-chevron-right"></i></a>
         </div>
-        <div class="home-img" role="img" aria-label="Bild på pizza"> 
+        <div class="home-img" role="img" aria-label="Bild på pizza">
         </div>
     </section>
     <section class="menu" id="menu">
@@ -42,7 +43,7 @@
     <!-- Om oss -->
     <section class="about" id="about">
         <div class="about-img">
-            <img src="src/pics/shape-1.png" alt="">    
+            <img src="src/pics/shape-1.png" alt="">
         </div>
         <div class="about-text">
             <div class="chef-pic">
@@ -50,7 +51,47 @@
             </div>
             <div class="text-column">
                 <h2>Vår historia</h2>
-                <p>Vår historia började för över ett årtionde sedan, då vår passion för äkta italiensk mat ledde till skapandet av vår pizzeria. Med hemligheter från sicilianska recept och kärleken till traditionell matlagning, har vi vuxit till en oas för pizzaälskare i hjärtat av staden. </p>
+                <p>Vår historia började för över ett årtionde sedan, då vår passion för äkta italiensk mat ledde till
+                    skapandet av vår pizzeria. Med hemligheter från sicilianska recept och kärleken till traditionell
+                    matlagning, har vi vuxit till en oas för pizzaälskare i hjärtat av staden. </p>
+            </div>
+        </div>
+    </section>
+    <section class="reservation">
+        <div class="res-form">
+            <form>
+                <h2>Boka bord</h2>
+                <div class="input-wrapper">
+                    <input type="text" name="name" id="name" placeholder="Ditt namn" class="input-field"
+                        autocomplete="off">
+                    <input type="tel" name="tel" id="tel" placeholder="Telefonnummer" class="input-field"
+                        autocomplete="off">
+                </div>
+                <div class="input-wrapper2">
+                    <select name="person" id="person" class="input-field">
+                        <option value="1">1 Person</option>
+                        <option value="2">2 Personer</option>
+                        <option value="3">3 Personer</option>
+                        <option value="4">4 Personer</option>
+                        <option value="5">5 Personer</option>
+                        <option value="6">6 Personer</option>
+                    </select>
+                    <input type="date" name="reservation-date" class="input-field">
+                    <input type="time" name="reservation-time" class="input-field">
+                </div>
+                <div class="input-wrapper" style="grid-template-columns: 1fr;">
+                    <textarea name="message" placeholder="Meddelande" class="input-field"></textarea>
+                </div>
+                <button type="submit">BOKA BORD</button>
+            </form>
+        </div>
+        <div class="contact">
+            <div class="contact-text">
+                <h3>Kontakta oss</h3>
+                <p>072-70 00 00</p>
+                <p><a href="mailto:kontakt@gustatio.se">kontakt@gustatio.se</a></p>
+                <h3>Adress</h3>
+                <p>Drottninggatan 15, Helsingborg</p>
             </div>
         </div>
     </section>

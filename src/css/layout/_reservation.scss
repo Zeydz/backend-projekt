@@ -1,0 +1,124 @@
+@use "../abstracts/variables";
+
+.reservation {
+  background-color: variables.$menu-color;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 80px auto;
+  padding: 20px;
+  .res-form {
+    width: 800px;
+    background-color: #141414;
+    form {
+      padding: 40px 20px 30px;
+
+      button {
+        max-width: 100%;
+        width: 100%;
+        background-color: variables.$accent-color;
+        height: 60px;
+        font-weight: 600;
+        letter-spacing: 3px;
+      }
+    }
+    .input-wrapper,
+    .input-wrapper2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 20px;
+      .input-field {
+        background-color: #1d1f26;
+        color: white;
+        height: 56px;
+        padding: 10px 20px;
+        border: 1px solid variables.$accent-color;
+        outline: none;
+        margin-bottom: 20px;
+        input[type="text"],
+        input[type="tel"],
+        input[type="tel"]::-webkit-input-placeholder {
+          color: white !important;
+        }
+      }
+      textarea {
+        height: 140px !important;
+      }
+
+      .input-field::placeholder {
+        color: white;
+      }
+    }
+    .input-wrapper2 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    h2 {
+      text-align: center;
+      color: white;
+      padding: 30px;
+      font-size: 1.8em;
+    }
+  }
+  .contact {
+    width: 350;
+    background-color: #1b1b1b;
+    text-align: center;
+    color: white;
+    h3 {
+      text-align: center;
+      color: white;
+      padding: 30px;
+    }
+    a {
+      color: white;
+    }
+    p {
+      padding: 5px;
+    }
+  }
+}
+
+/* Ändra färg på kalenderikon */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 2px;
+  opacity: 1;
+  filter: invert(0.8);
+}
+
+/* Responsivitet */
+@media (max-width: 800px) {
+  .reservation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .res-form {
+      width: 100%;
+    }
+    .input-wrapper {
+      grid-template-columns: 1fr;
+    }
+    .contact {
+      width: 100%;
+      margin-bottom: 30px;
+      .contact-text {
+        padding-bottom: 40px;
+      }
+    }
+  }
+}
+
+@media (max-width: 630px) {
+  
+  
+  .reservation .res-form .input-wrapper,
+  .reservation .res-form .input-wrapper2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 20px;
+  }
+}

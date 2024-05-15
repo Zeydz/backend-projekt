@@ -24,7 +24,7 @@ header {
   align-items: center;
 }
 
-.menu-box {
+.menu-box, .res-box{
   margin-bottom: 5px;
   padding: 10px;
   background-color: #141414;
@@ -58,7 +58,7 @@ button {
   color: white;
 }
 
-.delete-button {
+.delete-button, .delete-button2 {
   color: white;
   background-color: #f44336;
   transition: background-color 0.3s ease;
@@ -75,7 +75,7 @@ button.edit-button:hover {
   background-color: rgb(1, 80, 133);
 }
 
-button.delete-button:hover {
+button.delete-button:hover, button.delete-button2:hover {
   background-color: #85221b;
 }
 
@@ -93,7 +93,7 @@ button.delete-button:hover {
 
 /* Styling för bokningssektionen */
 .booking-section {
-  background-color: variables.$about-color;
+  background-color: variables.$menu-color;
   padding: 20px;
 }
 

@@ -31,4 +31,5 @@ menu.addEventListener('click', () => {
 
 navlist.addEventListener('click', () => {
     navlist.classList.toggle('open');
-})
+    menu.classList.toggle('fa-xmark');
+});
