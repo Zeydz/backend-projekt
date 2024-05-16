@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function fetchMenuAndRender() {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/api/menu", {
+      const response = await fetch("https://backend-projekt-api.onrender.com/api/menu", {
         headers: {
           "Authorization": `Bearer ${token}`,
         },
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function deleteMenu(id) {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:3000/api/menu/${id}`, {
+      const response = await fetch(`https://backend-projekt-api.onrender.com/api/menu/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer; ${token}`,
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       existingEditForm.remove();
     }
     /* Fetchar vald menyid */
-    fetch(`http://localhost:3000/api/menu/${menuId}`, {
+    fetch(`https://backend-projekt-api.onrender.com/api/menu/${menuId}`, {
       headers: {
         "Authorization": `Bearer; ${token}`,
       }
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             price: document.getElementById("editPrice").value,
           };
 
-          fetch(`http://localhost:3000/api/menu/${menuId}`, {
+          fetch(`https://backend-projekt-api.onrender.com/api/menu/${menuId}`, {
             method: "PUT",
             headers: {
               'Authorization': `Bearer; ${token}`,
@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const description = document.getElementById("description").value;
       const price = document.getElementById("price").value;
 
-      fetch("http://localhost:3000/api/menu", {
+      fetch("https://backend-projekt-api.onrender.com/api/menu", {
         method: "POST",
         headers: {
           'Authorization': `Bearer; ${token}`,
@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function fetchReservationAndRender() {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch("http://localhost:3000/api/bookings", {
+      const response = await fetch("https://backend-projekt-api.onrender.com/api/bookings", {
         headers: {
           'Authorization': `Bearer; ${token}`,
         }
@@ -330,7 +330,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function deleteRes(id) {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`http://localhost:3000/api/bookings/${id}`, {
+      const response = await fetch(`https://backend-projekt-api.onrender.com/bookings/${id}`, {
         method: "DELETE",
         headers: {
           'Authorization': `Bearer; ${token}`,

@@ -5,7 +5,7 @@ function checkAuthentication() {
     if (!token) {
         window.location.href = '/index.html'
     } else {
-        fetch('http://localhost:3000/api/admin-panel', {
+        fetch('https://backend-projekt-api.onrender.com/api/admin-panel', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* Hämta menyn när sidan laddas */
   showLoadingSpinner();
-  fetch("http://localhost:3000/api/menu")
+  fetch("https://backend-projekt-api.onrender.com/api/menu")
     .then((response) => {
       if (!response.ok) {
         const errorMenu = document.getElementById("error-menu");
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    fetch("http://localhost:3000/api/bookings", {
+    fetch("https://backend-projekt-api.onrender.com/api/bookings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
