@@ -62,12 +62,15 @@
             <form id="res-send">
                 <h2 id="book">Boka bord</h2>
                 <div class="input-wrapper">
+                    <label for="name" hidden>Namn:</label>
                     <input type="text" name="name" id="name" placeholder="Ditt namn" class="input-field"
                         autocomplete="off" required>
+                        <label for="tel" hidden>Telefonnummer</label>
                     <input type="tel" name="tel" id="tel" placeholder="Telefonnummer" class="input-field"
                         autocomplete="off" required>
                 </div>
                 <div class="input-wrapper2">
+                    <label for="person" hidden>Personer</label>
                     <select name="person" id="person" class="input-field" required>
                         <option value="1">1 Person</option>
                         <option value="2">2 Personer</option>
@@ -76,10 +79,13 @@
                         <option value="5">5 Personer</option>
                         <option value="6">6 Personer</option>
                     </select>
+                    <label for="date" hidden>Datum</label>
                     <input type="date" name="reservation-date" class="input-field" id="date" required>
+                    <label for="time" hidden>Tid</label>
                     <input type="time" name="reservation-time" class="input-field" id="time" required>
                 </div>
                 <div class="input-wrapper" style="grid-template-columns: 1fr;">
+                    <label for="message" hidden>Meddelande</label>
                     <textarea name="message" placeholder="Meddelande" class="input-field" id="message"></textarea>
                 </div>
                 <button type="submit" id="res-btn">BOKA BORD</button>
