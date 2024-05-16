@@ -34,6 +34,7 @@
       column-gap: 20px;
       .input-field {
         background-color: #1d1f26;
+        width: 100%;
         color: white;
         height: 56px;
         padding: 10px 20px;
@@ -126,4 +127,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     grid-template-columns: 1fr;
     column-gap: 20px;
   }
+}
+#time, #date {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
 }
