@@ -4,14 +4,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     await fetchReservationAndRender();
     await fetchMenuAndRender();
   } catch (error) {
-    console.error('Något gick fel', error)
+    console.error("Kunde inte skriva ut meny och reservation", error);
   }
-   
-  
+
   /* Funktion för att hämta meny */
   async function fetchMenuAndRender() {
     try {
-      const response = await fetch("http://localhost:3000/api/menu");
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:3000/api/menu", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      });
       if (!response.ok) {
         throw new Error("Kunde inte hämta menyn");
       }
@@ -67,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         editMenu(postId, menuBox);
       }
     });
-
+    /* Eventlistener för menyknapparna (ta bort) */
     const deleteButtons = document.querySelectorAll(".delete-button");
     deleteButtons.forEach((button) => {
       button.addEventListener("click", () => {
@@ -77,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     /* Eventlistener för bokningsknapparna (ta bort) */
-    const deleteButtons2 = document.querySelectorAll('.delete-button2')
+    const deleteButtons2 = document.querySelectorAll(".delete-button2");
     deleteButtons2.forEach((button) => {
       button.addEventListener("click", () => {
         const postID = button.getAttribute("data-post-id");
@@ -89,12 +93,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   /* Ta bort meny */
   async function deleteMenu(id) {
     try {
+      const token = localStorage.getItem("token");
       const response = await fetch(`http://localhost:3000/api/menu/${id}`, {
         method: "DELETE",
         headers: {
+          "Authorization": `Bearer; ${token}`,
           "Content-Type": "application/json",
         },
       });
+      if (!response.ok) {
+        throw new Error("Kunde inte hämta menyn");
+      }
       fetchMenuAndRender();
     } catch (error) {
       console.error("Något gick fel:", error);
@@ -105,12 +114,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   function editMenu(menuId, menuBox) {
     /* Kontrollera ifall editForm redan finns. */
     const existingEditForm = menuBox.querySelector(".edit-form");
+    const token = localStorage.getItem("token");
     if (existingEditForm) {
       existingEditForm.remove();
     }
-
     /* Fetchar vald menyid */
-    fetch(`http://localhost:3000/api/menu/${menuId}`)
+    fetch(`http://localhost:3000/api/menu/${menuId}`, {
+      headers: {
+        "Authorization": `Bearer; ${token}`,
+      }
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Kunde inte hämta menyinformation");
@@ -148,6 +161,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           fetch(`http://localhost:3000/api/menu/${menuId}`, {
             method: "PUT",
             headers: {
+              'Authorization': `Bearer; ${token}`,
               "Content-Type": "application/json",
             },
             body: JSON.stringify(updatedMenuData),
@@ -159,7 +173,6 @@ document.addEventListener("DOMContentLoaded", async () => {
               return response.json();
             })
             .then((updatedMenu) => {
-              console.log("Skickat data");
               editForm.remove();
               fetchMenuAndRender();
             })
@@ -184,6 +197,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const addFormEl = document.getElementById("addform");
   addMenuBtn.addEventListener("click", () => {
     const addMenuForm = document.createElement("form");
+    const token = localStorage.getItem('token');
     addMenuForm.classList.add("add-form");
     addMenuForm.innerHTML = `
     <h2>Lägg till meny </h2>
@@ -210,6 +224,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       fetch("http://localhost:3000/api/menu", {
         method: "POST",
         headers: {
+          'Authorization': `Bearer; ${token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -246,9 +261,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   /* -------------------- Här börjar bokning ----------------------- */
+  /* Fetcha reservation */
   async function fetchReservationAndRender() {
+    const token = localStorage.getItem('token');
     try {
-      const response = await fetch("http://localhost:3000/api/bookings");
+      const response = await fetch("http://localhost:3000/api/bookings", {
+        headers: {
+          'Authorization': `Bearer; ${token}`,
+        }
+      });
       if (!response.ok) {
         throw new Error("Kunde inte hämta reservationer");
       }
@@ -276,7 +297,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const resItemDate = document.createElement("p");
       const date = new Date(item.date);
-      const formattedDate = date.toLocaleDateString('sv-SE');
+      const formattedDate = date.toLocaleDateString("sv-SE");
       resItemDate.textContent = `Datum: ${formattedDate}`;
 
       const resItemTime = document.createElement("p");
@@ -305,18 +326,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     attachDeleteEventListeners();
   }
 
-    /* Ta bort bokning*/
-    async function deleteRes(id) {
-      try {
-        const response = await fetch(`http://localhost:3000/api/bookings/${id}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        fetchReservationAndRender();
-      } catch (error) {
-        console.error("Något gick fel:", error);
+  /* Ta bort bokning*/
+  async function deleteRes(id) {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await fetch(`http://localhost:3000/api/bookings/${id}`, {
+        method: "DELETE",
+        headers: {
+          'Authorization': `Bearer; ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      if(!response.ok) {
+        throw new Error('Kunde inte ta bort meny')
       }
+      fetchReservationAndRender();
+    } catch (error) {
+      console.error("Något gick fel:", error);
     }
+  }
 });
