@@ -1,7 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   /* Hämta menyn när sidan laddas */
-  fetchMenuAndRender();
-  fetchReservationAndRender();
+  try {
+    await fetchReservationAndRender();
+    await fetchMenuAndRender();
+  } catch (error) {
+    console.error('Något gick fel', error)
+  }
+   
+  
   /* Funktion för att hämta meny */
   async function fetchMenuAndRender() {
     try {
@@ -51,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* Lägga till attribut med id på varje meny */
-  function attachDeleteEventListeners() {
+  async function attachDeleteEventListeners() {
     const menuContainer = document.querySelector(".menu-container");
     menuContainer.addEventListener("click", (e) => {
       const target = e.target;
@@ -270,17 +276,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const resItemDate = document.createElement("p");
       const date = new Date(item.date);
-      const formattedDate = date.toISOString().split('T')[0];
+      const formattedDate = date.toLocaleDateString('sv-SE');
       resItemDate.textContent = `Datum: ${formattedDate}`;
 
       const resItemTime = document.createElement("p");
-      resItemTime.textContent = `Datum: ${item.time}`;
+      resItemTime.textContent = `Tid: ${item.time}`;
 
       const resItemPhone = document.createElement("p");
       resItemPhone.textContent = `Tel: ${item.phone}`;
 
       const resItemMessage = document.createElement("p");
-      resItemMessage.textContent = item.message;
+      resItemMessage.textContent = `Meddelande: ${item.message}`;
 
       /* Ta bort knapp */
       const deleteBtn = document.createElement("button");
@@ -294,9 +300,9 @@ document.addEventListener("DOMContentLoaded", () => {
       resBox.appendChild(resItemTime);
       resBox.appendChild(resItemMessage);
       resBox.appendChild(deleteBtn);
-
       resContainer.appendChild(resBox);
     });
+    attachDeleteEventListeners();
   }
 
     /* Ta bort bokning*/

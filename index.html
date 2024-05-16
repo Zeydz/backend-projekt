@@ -59,16 +59,16 @@
     </section>
     <section class="reservation">
         <div class="res-form">
-            <form>
+            <form id="res-send">
                 <h2>Boka bord</h2>
                 <div class="input-wrapper">
                     <input type="text" name="name" id="name" placeholder="Ditt namn" class="input-field"
-                        autocomplete="off">
+                        autocomplete="off" required>
                     <input type="tel" name="tel" id="tel" placeholder="Telefonnummer" class="input-field"
-                        autocomplete="off">
+                        autocomplete="off" required>
                 </div>
                 <div class="input-wrapper2">
-                    <select name="person" id="person" class="input-field">
+                    <select name="person" id="person" class="input-field" required>
                         <option value="1">1 Person</option>
                         <option value="2">2 Personer</option>
                         <option value="3">3 Personer</option>
@@ -76,13 +76,14 @@
                         <option value="5">5 Personer</option>
                         <option value="6">6 Personer</option>
                     </select>
-                    <input type="date" name="reservation-date" class="input-field">
-                    <input type="time" name="reservation-time" class="input-field">
+                    <input type="date" name="reservation-date" class="input-field" id="date" required>
+                    <input type="time" name="reservation-time" class="input-field" id="time" required>
                 </div>
                 <div class="input-wrapper" style="grid-template-columns: 1fr;">
-                    <textarea name="message" placeholder="Meddelande" class="input-field"></textarea>
+                    <textarea name="message" placeholder="Meddelande" class="input-field" id="message"></textarea>
                 </div>
-                <button type="submit">BOKA BORD</button>
+                <button type="submit" id="res-btn">BOKA BORD</button>
+                <p id="status"></p>
             </form>
         </div>
         <div class="contact">
