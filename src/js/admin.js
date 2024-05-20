@@ -330,7 +330,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function deleteRes(id) {
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch(`https://backend-projekt-api.onrender.com/bookings/${id}`, {
+      const response = await fetch(`https://backend-projekt-api.onrender.com/api/bookings/${id}`, {
         method: "DELETE",
         headers: {
           'Authorization': `Bearer; ${token}`,

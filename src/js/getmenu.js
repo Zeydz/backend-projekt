@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
       alert('Vänligen fyll i alla obligatoriska fält');
       return;
     }
-
     fetch("https://backend-projekt-api.onrender.com/api/bookings", {
       method: "POST",
       headers: {
