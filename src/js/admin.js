@@ -1,13 +1,12 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  /* Hämta menyn när sidan laddas */
   try {
+    /* Kör funktion för att visa reservationer och menyer */
     await fetchReservationAndRender();
     await fetchMenuAndRender();
   } catch (error) {
     console.error("Kunde inte skriva ut meny och reservation", error);
   }
-
-  /* Funktion för att hämta meny */
+  /* Fetcha och rendera meny till DOM genom renderMenu funktion */
   async function fetchMenuAndRender() {
     try {
       const token = localStorage.getItem("token");
@@ -25,12 +24,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error("Fel vid hämtning av meny:", error);
     }
   }
-  /* Funktion för att skriva ut de olika menyerna till DOM */
+  /* Rendera menyer till DOM */
   function renderMenu(menuItems) {
     const menuContainer = document.querySelector(".menu-container");
-    /* Rensa innehåll sedan tidigare */
     menuContainer.innerHTML = "";
-    /* Loopa igenom och skriv ut, lägger till ID från MongoDB till knapp */
     menuItems.forEach((item) => {
       const menuBox = document.createElement("div");
       menuBox.classList.add("menu-box");
@@ -40,12 +37,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       menuItemPrice.textContent = `${item.price} kr`;
       const menuItemDescription = document.createElement("p");
       menuItemDescription.textContent = item.description;
-      /* Ta bort knapp */
       const deleteBtn = document.createElement("button");
       deleteBtn.textContent = "Ta bort";
       deleteBtn.classList.add("delete-button");
       deleteBtn.setAttribute("data-post-id", item._id);
-      /* Ändra knapp */
       const editBtn = document.createElement("button");
       editBtn.textContent = "Ändra";
       editBtn.classList.add("edit-button");
@@ -57,40 +52,44 @@ document.addEventListener("DOMContentLoaded", async () => {
       menuBox.appendChild(editBtn);
       menuContainer.appendChild(menuBox);
     });
-    attachDeleteEventListeners();
+    attachEventListeners();
   }
 
-  /* Lägga till attribut med id på varje meny */
-  async function attachDeleteEventListeners() {
+  /* Tar bort och lägger till eventlistener för att motverka dubletter */
+  function attachEventListeners() {
     const menuContainer = document.querySelector(".menu-container");
-    menuContainer.addEventListener("click", (e) => {
-      const target = e.target;
-      if (target.classList.contains("edit-button")) {
-        const menuBox = target.closest(".menu-box");
-        const postId = target.getAttribute("data-post-id");
-        editMenu(postId, menuBox);
-      }
-    });
-    /* Eventlistener för menyknapparna (ta bort) */
-    const deleteButtons = document.querySelectorAll(".delete-button");
-    deleteButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const postID = button.getAttribute("data-post-id");
-        deleteMenu(postID);
-      });
-    });
+    const resContainer = document.querySelector(".res-container");
 
-    /* Eventlistener för bokningsknapparna (ta bort) */
-    const deleteButtons2 = document.querySelectorAll(".delete-button2");
-    deleteButtons2.forEach((button) => {
-      button.addEventListener("click", () => {
-        const postID = button.getAttribute("data-post-id");
-        deleteRes(postID);
-      });
-    });
+    menuContainer.removeEventListener("click", handleMenuClick);
+    menuContainer.addEventListener("click", handleMenuClick);
+
+    resContainer.removeEventListener("click", handleResClick);
+    resContainer.addEventListener("click", handleResClick);
   }
 
-  /* Ta bort meny */
+  /* Hantera click på menyn */
+  function handleMenuClick(e) {
+    const target = e.target;
+    if (target.classList.contains("edit-button")) {
+      const menuBox = target.closest(".menu-box");
+      const postId = target.getAttribute("data-post-id");
+      editMenu(postId, menuBox);
+    } else if (target.classList.contains("delete-button")) {
+      const postId = target.getAttribute("data-post-id");
+      deleteMenu(postId);
+    }
+  }
+
+  /* Hantera klick på reservationer */
+  function handleResClick(e) {
+    const target = e.target;
+    if (target.classList.contains("delete-button2")) {
+      const postId = target.getAttribute("data-post-id");
+      deleteRes(postId);
+    }
+  }
+
+  /* Tar bort meny */
   async function deleteMenu(id) {
     try {
       const token = localStorage.getItem("token");
@@ -102,7 +101,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         },
       });
       if (!response.ok) {
-        throw new Error("Kunde inte hämta menyn");
+        throw new Error("Kunde inte ta bort menyn");
       }
       fetchMenuAndRender();
     } catch (error) {
@@ -110,15 +109,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  /*  Funktion för att ändra en befintlig meny. Skickar med menyid i fetch. */
+  /* Skapar formulär, ändra meny */
   function editMenu(menuId, menuBox) {
-    /* Kontrollera ifall editForm redan finns. */
     const existingEditForm = menuBox.querySelector(".edit-form");
     const token = localStorage.getItem("token");
     if (existingEditForm) {
       existingEditForm.remove();
     }
-    /* Fetchar vald menyid */
     fetch(`https://backend-projekt-api.onrender.com/api/menu/${menuId}`, {
       headers: {
         "Authorization": `Bearer; ${token}`,
@@ -131,7 +128,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         return response.json();
       })
       .then((menuData) => {
-        /* Upplägg på DOM vid utskrift */
         const editForm = document.createElement("form");
         editForm.classList.add("edit-form");
         editForm.innerHTML = `
@@ -145,10 +141,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         <button type="submit">Spara</button>
         <button type="button" class="cancel-btn">Avbryt</button>`;
 
-        /* menuBox appendar allt */
         menuBox.appendChild(editForm);
 
-        /* Eventlistener som körs när man klickar på spara, uppdaterar data */
+        /* Eventlistenet för submit av edit */
         editForm.addEventListener("submit", (e) => {
           e.preventDefault();
 
@@ -180,7 +175,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               console.error("Något gick fel:", error);
             });
         });
-        /* Eventlistener för att avbryta ändring */
+
         const cancelButton = editForm.querySelector(".cancel-btn");
         cancelButton.addEventListener("click", () => {
           editForm.remove();
@@ -195,6 +190,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const menuContEl = document.querySelector(".flex-menu");
   const addMenuBtn = document.getElementById("add-btn");
   const addFormEl = document.getElementById("addform");
+  /* Lägg till knapp med formulär */
   addMenuBtn.addEventListener("click", () => {
     const addMenuForm = document.createElement("form");
     const token = localStorage.getItem('token');
@@ -210,13 +206,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     <button type="submit">Spara</button>
     <button type="button" class="cancel-btn">Avbryt</button>
     `;
+    /* Visar formulär */
     addFormEl.style.display = "block";
 
-    /* Eventlistener för att spara en ny meny */
+    /* Eventlistener för submit */
     addMenuForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      /* Värden från formuläret */
       const itemName = document.getElementById("itemName").value;
       const description = document.getElementById("description").value;
       const price = document.getElementById("price").value;
@@ -249,7 +245,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           console.error("Något gick fel", error);
         });
     });
-    /* Avbryt knapp */
+
+    /* Cancel knapp för lägga till */
     const cancelButton = addMenuForm.querySelector(".cancel-btn");
     cancelButton.addEventListener("click", () => {
       addMenuForm.remove();
@@ -260,8 +257,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     addFormEl.appendChild(addMenuForm);
   });
 
-  /* -------------------- Här börjar bokning ----------------------- */
-  /* Fetcha reservation */
+  /* Fetcha och rendera till DOM genom renderRes */
   async function fetchReservationAndRender() {
     const token = localStorage.getItem('token');
     try {
@@ -280,12 +276,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  /* Funktion för att skriva ut de olika bokningarna till DOM */
+  /* Visa reservationer på DOM */
   function renderRes(resItems) {
     const resContainer = document.querySelector(".res-container");
-    /* Rensa innehåll sedan tidigare */
     resContainer.innerHTML = "";
-    /* Loopa igenom och skriv ut, lägger till ID från MongoDB till knapp */
     resItems.forEach((item) => {
       const resBox = document.createElement("div");
       resBox.classList.add("res-box");
@@ -309,7 +303,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       const resItemMessage = document.createElement("p");
       resItemMessage.textContent = `Meddelande: ${item.message}`;
 
-      /* Ta bort knapp */
       const deleteBtn = document.createElement("button");
       deleteBtn.textContent = "Ta bort";
       deleteBtn.classList.add("delete-button2");
@@ -323,10 +316,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       resBox.appendChild(deleteBtn);
       resContainer.appendChild(resBox);
     });
-    attachDeleteEventListeners();
+    attachEventListeners();
   }
 
-  /* Ta bort bokning*/
+  /* Ta bort en reservation */
   async function deleteRes(id) {
     const token = localStorage.getItem('token');
     try {
@@ -338,7 +331,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         },
       });
       if(!response.ok) {
-        throw new Error('Kunde inte ta bort meny')
+        throw new Error('Kunde inte ta bort meny');
       }
       fetchReservationAndRender();
     } catch (error) {
